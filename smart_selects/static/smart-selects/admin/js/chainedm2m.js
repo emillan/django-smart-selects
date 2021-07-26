@@ -143,6 +143,14 @@
                     val = $(chainfield).val();
                     this.fill_field(val, initial_value, id, url, initial_parent, auto_choose);
                 }
+                
+                if ($(chainfield).hasClass("admin-autocomplete")) {
+                    var _id = chainfield.replace("#","")
+                    $(`#select2-${_id}-container`).on('DOMSubtreeModified', function () {
+                        $(chainfield).change()
+                    });
+                }
+                
                 fill_field = this.fill_field;
                 $(chainfield).change(function () {
                     var prefix, start_value, this_val, localID = id;
